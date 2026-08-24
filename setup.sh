@@ -114,12 +114,11 @@ cat > "$CONFIG" <<CONF
       "enabled": $CODEX_ENABLED,
       "source_dir": "~/.codex",
       "include": [
-        "instructions.md",
         "AGENTS.md",
-        "config.json",
-        "config.yaml",
-        "agents/**",
-        "memory/**"
+        "AGENTS.override.md",
+        "config.toml",
+        "*.config.toml",
+        "memories/**"
       ]
     },
     "gemini": {
@@ -128,10 +127,8 @@ cat > "$CONFIG" <<CONF
       "include": [
         "GEMINI.md",
         "settings.json",
-        "config.json",
-        "config.yaml",
-        "memory/**",
-        "styles/**"
+        "commands/**",
+        "extensions/**"
       ]
     },
     "cursor": {
@@ -139,10 +136,8 @@ cat > "$CONFIG" <<CONF
       "source_dir": "~/.cursor",
       "include": [
         "rules/**",
-        "prompts/**",
-        "memories/**",
-        "config.json",
-        "settings.json"
+        "mcp.json",
+        "permissions.json"
       ]
     }
   }

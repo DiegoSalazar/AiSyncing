@@ -27,9 +27,9 @@ AI coding assistants store persistent memories, custom agents, instruction files
 | Tool | Source directory | Files backed up |
 |------|----------------|-----------------|
 | Claude Code | `~/.claude` | `CLAUDE.md`, `settings.json`, `config.json`, `projects/*/memory/**`, `agents/**`, `commands/**`, `hooks/**`, `skills/**` |
-| OpenAI Codex | `~/.codex` | `instructions.md`, `AGENTS.md`, `config.json`, `agents/**`, `memory/**` |
-| Gemini CLI | `~/.gemini` | `GEMINI.md`, `settings.json`, `config.json`, `memory/**`, `styles/**` |
-| Cursor | `~/.cursor` | `rules/**`, `prompts/**`, `memories/**`, `config.json`, `settings.json` |
+| OpenAI Codex | `~/.codex` | `AGENTS.md`, `AGENTS.override.md`, `config.toml`, `*.config.toml`, `memories/**` |
+| Gemini CLI | `~/.gemini` | `GEMINI.md`, `settings.json`, `commands/**`, `extensions/**` |
+| Cursor | `~/.cursor` | `rules/**` (`.mdc` files), `mcp.json`, `permissions.json` |
 
 Setup auto-detects which tools are installed and enables them. All include lists are fully configurable.
 
