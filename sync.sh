@@ -80,12 +80,14 @@ with open(sys.argv[1]) as f:
     c = json.load(f)
 for name, src in c.get('sources', {}).items():
     if src.get('enabled', False):
-        d = src['source_dir'].replace('~', os.path.expanduser('~'))
+        d = os.path.expanduser(src['source_dir'])
         inc = json.dumps(src.get('include', []))
         print(name + '|' + d + '|' + inc)
 " "$CONFIG")
 
 SYNCED=0
+SYNCED_NAMES=()
+
 while IFS='|' read -r name source_dir includes_json; do
   [ -z "$name" ] && continue
 
@@ -105,6 +107,7 @@ while IFS='|' read -r name source_dir includes_json; do
   echo "Syncing $name..."
   if rsync -av --delete --filter="merge $filter_file" "$source_dir/" "$dest/"; then
     SYNCED=$((SYNCED + 1))
+    SYNCED_NAMES+=("$name")
   else
     echo "Warning: rsync failed for $name"
   fi
@@ -116,6 +119,8 @@ if [ "$SYNCED" -eq 0 ]; then
   notify "AI Syncing" "No sources synced - check config.json"
   exit 1
 fi
+
+SOURCES_LABEL=$(IFS=,; echo "${SYNCED_NAMES[*]}")
 
 cd "$REPO_DIR"
 
@@ -129,7 +134,7 @@ if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --other
 fi
 
 git add -A
-COMMIT_MSG="sync: $(date '+%Y-%m-%d %H:%M:%S')"
+COMMIT_MSG="sync($SOURCES_LABEL): $(date '+%Y-%m-%d %H:%M:%S')"
 git commit -m "$COMMIT_MSG"
 
 if git push -u origin main; then
