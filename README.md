@@ -4,13 +4,13 @@
 
 Automatic daily backups of your AI coding assistant memories, configs, and instruction files to a private GitHub repo.
 
-Supports **Claude Code**, **OpenAI Codex**, **Gemini CLI**, and any custom AI tool you add.
+Supports **Claude Code**, **OpenAI Codex**, **Gemini CLI**, **Cursor**, and any custom AI tool you add.
 
 ## Features
 
-- **Multi-tool**: backs up multiple AI harnesses simultaneously (Claude, Codex, Gemini, Cursor, or anything with a local config directory)
+- **Multi-tool**: backs up multiple AI harnesses simultaneously (Claude, Codex, Gemini, Cursor, Windsurf, or anything with a local config directory)
 - **Auto-setup**: interactive `setup.sh` detects installed AI tools, creates a private GitHub backup repo, and configures everything
-- **Configurable allow list**: per-source `include` patterns in `config.json` control exactly which files get backed up. Sane defaults for the top 3 AI tools out of the box.
+- **Configurable allow list**: per-source `include` patterns in `config.json` control exactly which files get backed up. Sane defaults for the top AI tools out of the box.
 - **Daily scheduled sync**: macOS LaunchAgent runs at your chosen hour. Each commit shows which sources changed: `sync(claude,codex): 2026-08-24 15:00:00`
 - **Native macOS notifications**: a compiled Swift helper app shows banner notifications on each sync. Click to open your backup's commit history on GitHub.
 - **Restore anywhere**: clone your backup repo on a new machine and rsync the data back
@@ -26,6 +26,7 @@ AI coding assistants store persistent memories, custom agents, instruction files
 | Claude Code | `~/.claude` | `CLAUDE.md`, `settings.json`, `config.json`, `projects/*/memory/**`, `agents/**`, `commands/**`, `hooks/**`, `skills/**` |
 | OpenAI Codex | `~/.codex` | `instructions.md`, `AGENTS.md`, `config.json`, `agents/**`, `memory/**` |
 | Gemini CLI | `~/.gemini` | `GEMINI.md`, `settings.json`, `config.json`, `memory/**`, `styles/**` |
+| Cursor | `~/.cursor` | `rules/**`, `prompts/**`, `memories/**`, `config.json`, `settings.json` |
 
 Setup auto-detects which tools are installed and enables them. All include lists are fully configurable.
 
@@ -99,18 +100,20 @@ Patterns follow rsync include syntax. Parent directories are auto-included for n
 
 ### Adding a custom AI tool
 
-Add a new entry to `sources` with any name, its config directory, and the files you want backed up:
+Add a new entry to `sources` with any name, its config directory, and the files you want backed up. For example, to add Windsurf (Codeium):
 
 ```json
 {
   "sources": {
-    "cursor": {
+    "windsurf": {
       "enabled": true,
-      "source_dir": "~/.cursor",
+      "source_dir": "~/.codeium/windsurf",
       "include": [
-        ".cursorrules",
+        ".windsurfrules",
+        "memories/**",
         "config.json",
-        "memory/**"
+        "settings.json",
+        "prompts/**"
       ]
     }
   }
@@ -144,6 +147,7 @@ git clone git@github.com:you/ai-backup.git ~/AiSyncing
 rsync -av ~/AiSyncing/data/claude/ ~/.claude/
 rsync -av ~/AiSyncing/data/codex/ ~/.codex/
 rsync -av ~/AiSyncing/data/gemini/ ~/.gemini/
+rsync -av ~/AiSyncing/data/cursor/ ~/.cursor/
 # Re-enable scheduled sync:
 bash ~/AiSyncing/setup.sh
 ```

@@ -44,6 +44,17 @@
         "memory/**",
         "styles/**"
       ]
+    },
+    "cursor": {
+      "enabled": false,
+      "source_dir": "~/.cursor",
+      "include": [
+        "rules/**",
+        "prompts/**",
+        "memories/**",
+        "config.json",
+        "settings.json"
+      ]
     }
   }
 }

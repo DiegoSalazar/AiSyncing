@@ -67,15 +67,18 @@ echo "Detecting installed AI tools..."
 CLAUDE_ENABLED=false
 CODEX_ENABLED=false
 GEMINI_ENABLED=false
+CURSOR_ENABLED=false
 
 [ -d "$HOME/.claude" ] && CLAUDE_ENABLED=true
 [ -d "$HOME/.codex" ]  && CODEX_ENABLED=true
 [ -d "$HOME/.gemini" ] && GEMINI_ENABLED=true
+[ -d "$HOME/.cursor" ] && CURSOR_ENABLED=true
 
 echo ""
 printf "  %s Claude Code  (~/.claude)\n" "$([ "$CLAUDE_ENABLED" = true ] && echo '[x]' || echo '[ ]')"
 printf "  %s OpenAI Codex (~/.codex)\n"  "$([ "$CODEX_ENABLED"  = true ] && echo '[x]' || echo '[ ]')"
 printf "  %s Gemini CLI   (~/.gemini)\n" "$([ "$GEMINI_ENABLED" = true ] && echo '[x]' || echo '[ ]')"
+printf "  %s Cursor       (~/.cursor)\n" "$([ "$CURSOR_ENABLED" = true ] && echo '[x]' || echo '[ ]')"
 echo ""
 
 # --- Schedule ---
@@ -129,6 +132,17 @@ cat > "$CONFIG" <<CONF
         "config.yaml",
         "memory/**",
         "styles/**"
+      ]
+    },
+    "cursor": {
+      "enabled": $CURSOR_ENABLED,
+      "source_dir": "~/.cursor",
+      "include": [
+        "rules/**",
+        "prompts/**",
+        "memories/**",
+        "config.json",
+        "settings.json"
       ]
     }
   }
