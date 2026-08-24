@@ -1,5 +1,7 @@
 # AiSyncing
 
+[![Tests](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml/badge.svg)](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml)
+
 Automatic daily backups of your AI coding assistant memories, configs, and instruction files to a private GitHub repo.
 
 Supports **Claude Code**, **OpenAI Codex**, **Gemini CLI**, and any custom AI tool you add.
