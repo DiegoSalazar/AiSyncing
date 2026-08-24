@@ -1,0 +1,35 @@
+name: Research AI Tools
+
+on:
+  schedule:
+    - cron: "0 10 * * 1" # Every Monday at 10:00 UTC
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run research script
+        id: research
+        continue-on-error: true
+        run: python3 scripts/research-tools.py
+
+      - name: Create issue if changes detected
+        if: steps.research.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING=$(gh issue list --label "research" --state open --json number -q '.[0].number' || echo "")
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file research-report.md
+            echo "Updated existing issue #$EXISTING"
+          else
+            gh issue create \
+              --title "AI tool config may need updating" \
+              --body-file research-report.md \
+              --label "research"
+          fi
