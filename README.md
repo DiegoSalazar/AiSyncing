@@ -1,6 +1,9 @@
 <img src="banner.svg" alt="AiSyncing - backup your AI memories while you're not thinking about it" width="550">
 
 [![Tests](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml/badge.svg)](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml)
+[![ShellCheck](https://img.shields.io/badge/shellcheck-passing-brightgreen)](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Platform: macOS](https://img.shields.io/badge/platform-macOS-lightgrey)](README.md)
 
 Automatic daily backups of your AI coding assistant memories, configs, and instruction files to a private GitHub repo.
 

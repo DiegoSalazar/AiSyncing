@@ -7,6 +7,13 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        run: shellcheck setup.sh sync.sh uninstall.sh tests/run.sh
+
   test:
     runs-on: ubuntu-latest
     steps:

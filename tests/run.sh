@@ -61,7 +61,7 @@ assert_file_not_exists() {
 }
 
 WORK_DIR=$(mktemp -d)
-trap "rm -rf $WORK_DIR" EXIT
+trap 'rm -rf "$WORK_DIR"' EXIT
 
 echo "=== AiSyncing Test Suite ==="
 echo ""
@@ -71,6 +71,7 @@ echo "--- 1. Filter Generation ---"
 # ============================================================
 
 # Extract generate_filter's Python code from sync.sh so tests stay in sync
+# shellcheck disable=SC2016
 FILTER_PY=$(sed -n '/^generate_filter()/,/^}/p' "$REPO_DIR/sync.sh" | sed -n '/python3 -c/,/" "\$1"/p' | sed '1s/.*python3 -c "//' | sed '$s/" "\$1"//')
 
 run_filter() {
@@ -152,6 +153,7 @@ assert_eq "reads email" "test@example.com" "$(read_config git_email)"
 assert_eq "reads int" "15" "$(read_config schedule_hour)"
 assert_eq "reads nested bool true" "true" "$(read_config sources.claude.enabled)"
 assert_eq "reads nested bool false" "false" "$(read_config sources.codex.enabled)"
+# shellcheck disable=SC2088
 assert_eq "reads nested string" "~/.claude" "$(read_config sources.claude.source_dir)"
 
 echo ""
@@ -416,9 +418,9 @@ TOTAL=$((PASS + FAIL))
 echo "Tests: $TOTAL | Pass: $PASS | Fail: $FAIL"
 
 if [ "$FAIL" -gt 0 ]; then
-  printf "${RED}FAILED${NC}\n"
+  printf '%b\n' "${RED}FAILED${NC}"
   exit 1
 else
-  printf "${GREEN}ALL PASSED${NC}\n"
+  printf '%b\n' "${GREEN}ALL PASSED${NC}"
   exit 0
 fi
