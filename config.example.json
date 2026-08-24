@@ -1,0 +1,49 @@
+{
+  "backup_repo": "git@github.com:you/ai-backup.git",
+  "commits_url": "https://github.com/you/ai-backup/commits/main",
+  "git_user_name": "Your Name",
+  "git_email": "you@example.com",
+  "schedule_hour": 15,
+  "sources": {
+    "claude": {
+      "enabled": true,
+      "source_dir": "~/.claude",
+      "include": [
+        "CLAUDE.md",
+        "config.json",
+        "settings.json",
+        "remote-settings.json",
+        "package.json",
+        "projects/*/memory/**",
+        "agents/**",
+        "commands/**",
+        "hooks/**",
+        "skills/**"
+      ]
+    },
+    "codex": {
+      "enabled": false,
+      "source_dir": "~/.codex",
+      "include": [
+        "instructions.md",
+        "AGENTS.md",
+        "config.json",
+        "config.yaml",
+        "agents/**",
+        "memory/**"
+      ]
+    },
+    "gemini": {
+      "enabled": false,
+      "source_dir": "~/.gemini",
+      "include": [
+        "GEMINI.md",
+        "settings.json",
+        "config.json",
+        "config.yaml",
+        "memory/**",
+        "styles/**"
+      ]
+    }
+  }
+}
