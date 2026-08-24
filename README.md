@@ -165,13 +165,7 @@ Stops the LaunchAgent and removes the compiled notification app. Your backup dat
 
 ## Staying current
 
-A weekly GitHub Action (`Research AI Tools`) monitors official documentation for all supported tools. It fetches doc pages from each tool's repo, hashes the content, and compares against stored baselines. If any docs change or become unreachable, it opens a GitHub issue for review.
-
-You can also trigger it manually from the Actions tab, or run locally:
-
-```bash
-python3 scripts/research-tools.py
-```
+A weekly GitHub Action (`Research AI Tools`) monitors official documentation for all supported tools. It fetches doc pages from each tool's repo, hashes the content, and compares against stored baselines. If any docs change or become unreachable, it opens a GitHub issue for review. Can also be triggered manually from the Actions tab.
 
 ### Updating the template
 
