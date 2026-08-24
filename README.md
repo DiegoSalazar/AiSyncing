@@ -1,12 +1,6 @@
-<p align="center">
-  <img src="logo.svg" alt="AiSyncing logo" width="160">
-</p>
+<img src="logo.svg" alt="AiSyncing - backup your AI memories while you're not thinking about it" width="100%">
 
-<h1 align="center">AiSyncing</h1>
-
-<p align="center">
-  <a href="https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml"><img src="https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
-</p>
+[![Tests](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml/badge.svg)](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml)
 
 Automatic daily backups of your AI coding assistant memories, configs, and instruction files to a private GitHub repo.
 
