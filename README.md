@@ -163,7 +163,17 @@ bash ~/AiSyncing/uninstall.sh
 
 Stops the LaunchAgent and removes the compiled notification app. Your backup data and config are left in place.
 
-## Updating
+## Staying current
+
+A weekly GitHub Action (`Research AI Tools`) monitors official documentation for all supported tools. It fetches doc pages from each tool's repo, hashes the content, and compares against stored baselines. If any docs change or become unreachable, it opens a GitHub issue for review.
+
+You can also trigger it manually from the Actions tab, or run locally:
+
+```bash
+python3 scripts/research-tools.py
+```
+
+### Updating the template
 
 Setup saves the AiSyncing template as the `upstream` remote:
 
