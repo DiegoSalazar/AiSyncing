@@ -1,4 +1,4 @@
-<img src="logo.svg" alt="AiSyncing - backup your AI memories while you're not thinking about it" width="550">
+<img src="banner.svg" alt="AiSyncing - backup your AI memories while you're not thinking about it" width="550">
 
 [![Tests](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml/badge.svg)](https://github.com/DiegoSalazar/AiSyncing/actions/workflows/test.yml)
 
