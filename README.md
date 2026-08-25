@@ -155,6 +155,16 @@ rsync -av ~/AiSyncing/data/cursor/ ~/.cursor/
 bash ~/AiSyncing/setup.sh
 ```
 
+### Verifying the round-trip
+
+A test script proves the full backup-restore cycle works without touching your real files. It syncs `~/.claude` to a temp directory, restores to a second temp directory, and diffs the two:
+
+```bash
+bash scripts/test-restore.sh
+```
+
+The test verifies every backed-up file is restored byte-for-byte and checks that key files (memories, config, settings) are present. Both directories are cleaned up automatically.
+
 ## Uninstall
 
 ```bash

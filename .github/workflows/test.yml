@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: ShellCheck
-        run: shellcheck setup.sh sync.sh uninstall.sh tests/run.sh
+        run: shellcheck setup.sh sync.sh uninstall.sh tests/run.sh scripts/generate-readme.sh scripts/test-restore.sh
 
   test:
     runs-on: ubuntu-latest
