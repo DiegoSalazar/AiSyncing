@@ -47,6 +47,7 @@ if [ -d "$PROJECTS_DIR" ]; then
     }')
     [ -z "$proj_name" ] && proj_name="$encoded_name"
     # The bare ~/code project (global context) has no sub-project name
+    # shellcheck disable=SC2088
     [ "$proj_name" = "code" ] && proj_name="~/code (global)"
 
     # Find extra memory files
